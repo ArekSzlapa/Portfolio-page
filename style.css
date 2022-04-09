@@ -13,6 +13,7 @@
 /* border box model: https://css-tricks.com/box-sizing/ */
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 *,
 *::before,
@@ -44,7 +45,7 @@ a:hover {
 /* Intro style */
 
 #intro {
-  padding: 4rem 1rem 10rem 10rem;
+  padding: 4rem 1rem 10rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -70,7 +71,9 @@ a:hover {
 #contact {
   background-color: var(--plum);
   text-align: center;
-  padding: 3rem;
+  padding: 3rem 0rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .darkBlue {
@@ -82,7 +85,7 @@ a:hover {
 #contact p {
   padding: 2rem;
   font-family: var(--mono);
-  width: 500px;
+  max-width: 500px;
   margin: auto;
 }
 #contact h3 {
@@ -140,17 +143,6 @@ nav h1 [class*="fa-"] {
   color: var(--white);
 }
 
-@media (min-width: 850px) {
-  nav {
-    max-width: 1500px;
-    margin: 0 auto;
-  }
-  nav li:first-child {
-    flex-basis: auto;
-    text-align: left;
-    margin-right: auto;
-  }
-}
 footer h3 {
   font-family: var(--sans);
   font-weight: 400;
@@ -158,6 +150,7 @@ footer h3 {
   display: flex;
   flex-basis: 100;
   justify-content: center;
+  text-align: center;
 }
 .stopa {
   align-items: center;
@@ -187,8 +180,6 @@ footer p {
   color: var(--aqua);
 }
 .mail {
-  width: 12vh;
-  height: 4vh;
   color: var(--white);
   cursor: pointer;
   border: none;
@@ -231,6 +222,8 @@ footer p {
   color: var(--white);
   font-size: 1rem;
   line-height: 1.5;
+  position: relative;
+  z-index: 10;
 }
 #projects ul {
   list-style-type: none;
@@ -249,7 +242,21 @@ footer p {
   border-top: 1px solid var(--aqua);
   border-radius: 25px;
   padding: 1rem;
+  z-index: 0;
 }
+
+@media (min-width: 850px) {
+  nav {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  nav li:first-child {
+    flex-basis: auto;
+    text-align: left;
+    margin-right: auto;
+  }
+}
+
 @media (min-width: 800px) {
   article {
     display: grid;
@@ -269,9 +276,6 @@ footer p {
   #projects ul {
     justify-content: flex-end;
   }
-  img {
-    width: 100%;
-  }
   #projects .reverse .container {
     grid-column: 1/7;
     order: 2;
@@ -284,9 +288,47 @@ footer p {
   #projects .reverse ul {
     justify-content: flex-start;
   }
+  #about {
+    padding: 4rem 1rem 4rem 10rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .smaller {
+    margin: auto;
+    /* Has to be sticky to right */
+  }
+  .todo {
+    width: 90%;
+  }
+  .tama {
+    height: 80%;
+  }
 }
-#about {
-  padding: 4rem 1rem 4rem 10rem;
-  max-width: 1200px;
-  margin: 0 auto;
+img {
+  transition: transform 0.7s ease-in-out;
+  width: 100%;
+}
+img:hover {
+  transform: scale(120%);
+}
+@media (max-width: 800px) {
+  html {
+    width: fit-content;
+  }
+  section #intro {
+    padding: 15px;
+  }
+  #intro {
+    padding: 20px 20px 10px 10px;
+    text-align: center;
+  }
+  img:hover {
+    transform: none;
+  }
+  #intro .name span {
+    font-size: 42px;
+  }
+  #intro h2 {
+    font-size: 32px;
+  }
 }
